@@ -84,6 +84,40 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         results.append(result)
     return results
 place_in_circle(create_tree, count=8, radius=7, center_x=0, center_z=5)
+def create_building(x, z, width=2.0, height=5.0, depth=2.0):
+    """Create a rectangular building at (x, z), sitting on the ground plane."""
+    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
+    cmds.move(x, height / 2.0, z, building)
+    return building
+
+# Now we can build a street in just a few lines
+create_building(-6, -6, height=8)
+create_building(-2, -6, width=3, height=4, depth=3)
+create_building(3, -6, height=10)
+
+# =============================================================================
+# SECTION 4: Return values — using what a function gives back
+# =============================================================================
+
+def create_lamppost(x, z, height=3.0):
+    """Create a lamppost and return the pole and lamp node names."""
+    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
+    cmds.move(x, height / 2.0, z, pole)
+
+    lamp = cmds.polySphere(radius=0.25)[0]
+    cmds.move(x, height + 0.25, z, lamp)
+    return pole, lamp
+
+# Capture the return values in variables
+pole_node, lamp_node = create_lamppost(6, -3)
+print("Created lamppost: pole={}, lamp={}".format(pole_node, lamp_node))
+
+# Now we can do something with the returned names — like make the lamp glow
+lamp_shader = cmds.shadingNode("lambert", asShader=True, name="lampGlow")
+cmds.setAttr(lamp_shader + ".color", 1.0, 0.95, 0.6, type="double3")
+cmds.select(lamp_node)
+cmds.hyperShade(assign=lamp_shader)
+
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
