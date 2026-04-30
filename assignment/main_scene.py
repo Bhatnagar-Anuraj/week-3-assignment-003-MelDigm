@@ -83,7 +83,7 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         result = create_func(x, z)
         results.append(result)
     return results
-
+place_in_circle(create_tree, count=8, radius=7, center_x=0, center_z=5)
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
