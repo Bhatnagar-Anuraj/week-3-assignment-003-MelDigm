@@ -109,7 +109,7 @@ def create_lamppost(x, z, height=3.0):
     return pole, lamp
 
 # Capture the return values in variables
-pole_node, lamp_node = create_lamppost(6, -3)
+pole_node, lamp_node = create_lamppost(0, 5)
 print("Created lamppost: pole={}, lamp={}".format(pole_node, lamp_node))
 
 # Now we can do something with the returned names — like make the lamp glow
