@@ -49,7 +49,25 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 #
 # Remember: call each function at least once, and aim for 15+ objects.
 # ---------------------------------------------------------------------------
+trunk1 = cmds.polyCylinder(name="trunk1", radius=0.3, height=2.0)[0]
+cmds.move(-4, 1.0, 0, trunk1)
+canopy1 = cmds.polySphere(name="canopy1", radius=1.2)[0]
+cmds.move(-4, 2.7, 0, canopy1)
 
+def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
+    """Call create_func repeatedly, placing results in a circle.
+
+    create_func must accept (x, z) as its first two arguments.
+    Returns a list of whatever create_func returns.
+    """
+    results = []
+    for i in range(count):
+        angle = (2 * math.pi / count) * i
+        x = center_x + math.cos(angle) * radius
+        z = center_z + math.sin(angle) * radius
+        result = create_func(x, z)
+        results.append(result)
+    return results
 
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
