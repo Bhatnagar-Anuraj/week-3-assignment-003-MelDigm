@@ -36,7 +36,7 @@ building = create_building(10, 0)
 
 trunk, canopy = create_tree(3, -5)
 
-pole_node, lamp_node = create_fence(-6, -3)
+post, post2, rail = create_fence(-6, -3)
 
 pole_node, lamp_node = create_lamp_post(8, 2)
 
