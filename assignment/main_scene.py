@@ -117,6 +117,9 @@ lamp_shader = cmds.shadingNode("lambert", asShader=True, name="lampGlow")
 cmds.setAttr(lamp_shader + ".color", 1.0, 0.95, 0.6, type="double3")
 cmds.select(lamp_node)
 cmds.hyperShade(assign=lamp_shader)
+# =============================================================================
+# SECTION 5: Outline
+# =============================================================================
 
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
