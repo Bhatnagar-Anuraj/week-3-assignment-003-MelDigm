@@ -49,32 +49,20 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 #
 # Remember: call each function at least once, and aim for 15+ objects.
 # ---------------------------------------------------------------------------
-trunk1 = cmds.polyCylinder(name="trunk1", radius=0.5, height=2.0)[0]
-cmds.move(-4, 1.0, 0, trunk1)
-canopy1 = cmds.polySphere(name="canopy1", radius=1.2)[0]
-cmds.move(-4, 2.7, 0, canopy1)
 def create_tree(x, z, trunk_height=2.0, canopy_radius=1.2):
-    """Create a simple tree at the given X, Z position.
-
-    Default parameter values (trunk_height=2.0) let callers omit arguments they're happy with.
-    """
+    """Create a simple tree at the given X, Z position."""
     trunk_radius = 0.3
     trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
     cmds.move(x, trunk_height / 2.0, z, trunk)
-
     canopy = cmds.polySphere(radius=canopy_radius)[0]
     canopy_y = trunk_height + canopy_radius * 0.6
     cmds.move(x, canopy_y, z, canopy)
-
-    # We return the node names so the caller can modify them later if needed.
     return trunk, canopy
-    
+create_tree(-4, 0)
+create_tree(0, 0)
+create_tree(4, 0)
+create_tree(8, 0, trunk_height=3.5, canopy_radius=1.8) # a big tree
 def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
-    """Call create_func repeatedly, placing results in a circle.
-
-    create_func must accept (x, z) as its first two arguments.
-    Returns a list of whatever create_func returns.
-    """
     results = []
     for i in range(count):
         angle = (2 * math.pi / count) * i
@@ -83,13 +71,9 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         result = create_func(x, z)
         results.append(result)
     return results
-place_in_circle(create_tree, count=8, radius=7, center_x=0, center_z=5)
-def create_building(x, z, width=2.0, height=5.0, depth=2.0):
-    """Create a rectangular building at (x, z), sitting on the ground plane."""
-    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
-    cmds.move(x, height / 2.0, z, building)
-    return building
+place_in_circle(create_tree, count=8, radius=7)
 
+    
 # Now we can build a street in just a few lines
 create_building(-6, -6, height=8)
 create_building(-2, -6, width=3, height=4, depth=3)
