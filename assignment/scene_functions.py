@@ -45,6 +45,7 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
     Returns:
         list: A list of object/group names created by create_func.
     """
+    x, y, z = position
     results = []
     for i in range(count):
         angle = (2 * math.pi / count) * i
@@ -70,7 +71,7 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     Returns:
         str: The name of the created building transform node.
     """
-
+    x, y, z = position
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
     cmds.move(x, height / 2.0, z, building)
     return building
@@ -88,6 +89,7 @@ def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
     Returns:
         str: The name of a group node containing the trunk and canopy.
     """
+    x, y, z = position
     trunk_radius = 0.3
     trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
     cmds.move(x, trunk_height / 2.0, z, trunk)
@@ -110,6 +112,7 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing all fence parts.
     """
+    x, y, z = position
     post = cmds.polyCylinder(radius=0.1, height=height)[0]
     cmds.move(x, height / 2.0, z, post)
     post2 = cmds.polyCylinder(radius=0.1, height=height)[0]
@@ -129,6 +132,7 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing the pole and light.
     """
+    x, y, z = position
     pole = cmds.polyCylinder(radius=0.1, height=height)[0]
     cmds.move(x, height / 2.0, z, pole)
     lamp = cmds.polySphere(radius=0.25)[0]
