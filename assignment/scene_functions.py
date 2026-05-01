@@ -60,7 +60,7 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     post = cmds.polyCylinder(radius=0.1, height=height)[0]
     cmds.move(x, height / 2.0, z, post)
     post2 = cmds.polyCylinder(radius=0.1, height=height)[0]
-    rail = cmds.polyCube(width=height, height=.2, depth=,2)[0]
+    rail = cmds.polyCube(width=height, height=.2, depth=.2)[0]
     cmds.move(x, height-height/2 + 0.25, z, rail)
     cmds.move(x + height, height / 2.0, z, post2)
     return post, post2, rail
