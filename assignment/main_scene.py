@@ -32,9 +32,11 @@ cmds.file(new=True, force=True)
 # Create a ground plane.
 ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
+building = create_building(10, 0)
 create_building(10, 0)
+trunk, canopy = create_tree(3, -5)
 create_tree(3, -5)
-
+pole, lamp = create_fence(-6, -3)
 create_fence(-6, -3)
 
 create_lamp_post(8, 2)
