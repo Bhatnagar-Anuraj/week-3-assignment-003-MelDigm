@@ -44,6 +44,9 @@ pole_node, lamp_node = create_lamp_post(8, 2)
 create_lamp_post(8, 2)
 create_func = place_in_circle
 place_in_circle(0,0)
+place_in_circle(0,0)
+place_in_circle(0,0)
+
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
