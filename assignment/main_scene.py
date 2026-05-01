@@ -73,7 +73,7 @@ def create_lamppost(x, z, height=3.0):
     lamp = cmds.polySphere(radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
- def create_building(x, z, width=2.0, height=5.0, depth=2.0):
+def create_building(x, z, width=2.0, height=5.0, depth=2.0):
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
     cmds.move(x, height / 2.0, z, building)
     return building
