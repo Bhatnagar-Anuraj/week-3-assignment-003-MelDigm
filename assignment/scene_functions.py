@@ -24,11 +24,7 @@ GRADING CRITERIA:
 
 import maya.cmds as cmds
 import math
-center_x = 0
-center_z = 0
-x = center_x + math.cos(angle) * radius
-z = center_z + math.sin(angle) * radius
-y = 0
+
 def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
                      **kwargs):
     ""Place objects created by 'create_func' in a circular arrangement.
