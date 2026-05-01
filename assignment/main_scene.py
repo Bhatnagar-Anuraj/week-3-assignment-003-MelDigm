@@ -58,10 +58,6 @@ def create_tree(x, z, trunk_height=2.0, canopy_radius=1.2):
     canopy_y = trunk_height + canopy_radius * 0.6
     cmds.move(x, canopy_y, z, canopy)
     return trunk, canopy
-create_tree(-4, 0)
-create_tree(0, 0)
-create_tree(4, 0)
-create_tree(8, 0, trunk_height=3.5, canopy_radius=1.8) # a big tree
 def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
     results = []
     for i in range(count):
@@ -71,8 +67,21 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         result = create_func(x, z)
         results.append(result)
     return results
-place_in_circle(create_tree, count=8, radius=7)
 
+def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
+    """Create a simple building from a cube, placed on the ground plane.
+
+    The building is a single scaled cube whose base sits at ground level
+    (y = 0) at the given position.
+
+    Args:
+        width (float): Width of the building along the X axis.
+        height (float): Height of the building along the Y axis.
+        depth (float): Depth of the building along the Z axis.
+        position (tuple): (x, y, z) ground-level position. The building
+            base will rest at this point; y is typically 0.
+
+place_in_circle(create_tree, count=8, radius=7)
 
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
