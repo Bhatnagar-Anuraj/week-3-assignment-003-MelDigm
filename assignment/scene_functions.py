@@ -26,8 +26,34 @@ import maya.cmds as cmds
 import math
 center_x = 0
 center_z = 0
-x = center_x + math.cos(angle) * radius
-z = center_z + math.sin(angle) * radius
+def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
+                     **kwargs):
+    ""Place objects created by 'create_func' in a circular arrangement.
+
+    This is a higher-order function: it takes another function as an
+    argument and calls it repeatedly to place objects around a circle.
+
+    Args:
+        create_func (callable): A function from this module (e.g.,
+            create_tree) that accepts a 'position' keyword argument
+            and returns an object name.
+        count (int): Number of objects to place around the circle.
+        radius (float): Radius of the circle.
+        center (tuple): (x, y, z) center of the circle.
+        **kwargs: Additional keyword arguments passed to create_func
+            (e.g., trunk_height=4).
+
+    Returns:
+        list: A list of object/group names created by create_func.
+    """
+    results = []
+    for i in range(count):
+        angle = (2 * math.pi / count) * i
+        x = center_x + math.cos(angle) * radius
+        z = center_z + math.sin(angle) * radius
+        result = create_func(x, z)
+        results.append(result)
+    return results
 
 def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     """Create a simple building from a cube, placed on the ground plane.
@@ -109,33 +135,4 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     lamp = cmds.polySphere(radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
-def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
-                     **kwargs):
-    ""Place objects created by 'create_func' in a circular arrangement.
-
-    This is a higher-order function: it takes another function as an
-    argument and calls it repeatedly to place objects around a circle.
-
-    Args:
-        create_func (callable): A function from this module (e.g.,
-            create_tree) that accepts a 'position' keyword argument
-            and returns an object name.
-        count (int): Number of objects to place around the circle.
-        radius (float): Radius of the circle.
-        center (tuple): (x, y, z) center of the circle.
-        **kwargs: Additional keyword arguments passed to create_func
-            (e.g., trunk_height=4).
-
-    Returns:
-        list: A list of object/group names created by create_func.
-    """
-    results = []
-    for i in range(count):
-        angle = (2 * math.pi / count) * i
-        x = center_x + math.cos(angle) * radius
-        z = center_z + math.sin(angle) * radius
-        result = create_func(x, z)
-        results.append(result)
-    create_lamp_post(0,0)
-    return results
 
