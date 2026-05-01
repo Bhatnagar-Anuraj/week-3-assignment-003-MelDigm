@@ -38,7 +38,7 @@ trunk, canopy = create_tree(3, -5)
 create_tree(3, -5)
 pole, lamp = create_fence(-6, -3)
 create_fence(-6, -3)
-
+pole, lamp = create_lamp_post(8, 2)
 create_lamp_post(8, 2)
 place_in_circle(create_lamppost, count=6, radius=5) # ring of lampposts
 
