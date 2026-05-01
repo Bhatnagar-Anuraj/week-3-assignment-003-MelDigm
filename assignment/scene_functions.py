@@ -85,6 +85,14 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing all fence parts.
     """
+    post = cmds.polyCylinder(radius=0.1, height=height)[0]
+    cmds.move(x, height / 2.0, z, post)
+    post2 = cmds.polyCylinder(radius=0.1, height=height)[0]
+    rail = cmds.polyCube(width=height, height=.2, depth=,2)[0]
+    cmds.move(x, height-height/2 + 0.25, z, rail)
+    cmds.move(x + height, height / 2.0, z, post2)
+    return pole, lamp
+
     # TODO: Implement this function.
     #   1. Calculate spacing between posts: length / (post_count - 1).
     #   2. Loop to create 'post_count' thin, tall cubes as posts.
@@ -105,11 +113,12 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing the pole and light.
     """
-    # TODO: Implement this function.
-    #   1. Create a thin polyCylinder for the pole.
-    #   2. Create a polySphere for the light, placed at the top of the pole.
-    #   3. Group them, move to 'position', and return the group name.
-    pass
+    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
+    cmds.move(x, height / 2.0, z, pole)
+    lamp = cmds.polySphere(radius=0.25)[0]
+    cmds.move(x, height + 0.25, z, lamp)
+    return pole, lamp
+
 
 
 def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
@@ -132,13 +141,11 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
     Returns:
         list: A list of object/group names created by create_func.
     """
-    # TODO: Implement this function.
-    #   1. Import the math module (at the top of the file or here).
-    #   2. Loop 'count' times. For each iteration:
-    #       a. Calculate the angle: angle = 2 * math.pi * i / count
-    #       b. Calculate x = center[0] + radius * math.cos(angle)
-    #       c. Calculate z = center[2] + radius * math.sin(angle)
-    #       d. Call create_func(position=(x, center[1], z), **kwargs)
-    #       e. Append the returned name to a results list.
-    #   3. Return the results list.
-    pass
+    results = []
+    for i in range(count):
+        angle = (2 * math.pi / count) * i
+        x = center_x + math.cos(angle) * radius
+        z = center_z + math.sin(angle) * radius
+        result = create_func(x, z)
+        results.append(result)
+    return results
