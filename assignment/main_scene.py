@@ -67,22 +67,19 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         result = create_func(x, z)
         results.append(result)
     return results
-    def create_lamppost(x, z, height=3.0):
-"""Create a lamppost. Returns (pole, lamp) node names."""
+def create_lamppost(x, z, height=3.0):
     pole = cmds.polyCylinder(radius=0.1, height=height)[0]
     cmds.move(x, height / 2.0, z, pole)
     lamp = cmds.polySphere(radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
-# Capture the returned names
-pole_node, lamp_node = create_lamppost(6, -3)
-# Use them to assign a glowing shader
-lamp_shader = cmds.shadingNode("lambert", asShader=True)
-cmds.setAttr(lamp_shader + ".color", 1.0, 0.95, 0.6, type="double3")
-cmds.select(lamp_node)
-cmds.hyperShade(assign=lamp_shader)
-place_in_circle(create_tree, count=8, radius=7)
-
+ def create_building(x, z, width=2.0, height=5.0, depth=2.0):
+    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
+    cmds.move(x, height / 2.0, z, building)
+    return building
+create_building(0, 0)
+place_in_circle(create_tree, count=8, radius=10)
+place_in_circle(create_lamppost, count=6, radius=5)
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
