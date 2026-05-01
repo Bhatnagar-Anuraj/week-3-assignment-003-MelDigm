@@ -49,34 +49,7 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 #
 # Remember: call each function at least once, and aim for 15+ objects.
 # ---------------------------------------------------------------------------
-def create_tree(x, z, trunk_height=2.0, canopy_radius=1.2):
-    """Create a simple tree at the given X, Z position."""
-    trunk_radius = 0.3
-    trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
-    cmds.move(x, trunk_height / 2.0, z, trunk)
-    canopy = cmds.polySphere(radius=canopy_radius)[0]
-    canopy_y = trunk_height + canopy_radius * 0.6
-    cmds.move(x, canopy_y, z, canopy)
-    return trunk, canopy
-def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
-    results = []
-    for i in range(count):
-        angle = (2 * math.pi / count) * i
-        x = center_x + math.cos(angle) * radius
-        z = center_z + math.sin(angle) * radius
-        result = create_func(x, z)
-        results.append(result)
-    return results
-def create_lamppost(x, z, height=3.0):
-    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
-    cmds.move(x, height / 2.0, z, pole)
-    lamp = cmds.polySphere(radius=0.25)[0]
-    cmds.move(x, height + 0.25, z, lamp)
-    return pole, lamp
-def create_building(x, z, width=2.0, height=5.0, depth=2.0):
-    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
-    cmds.move(x, height / 2.0, z, building)
-    return building
+
 create_building(0, 0)
 place_in_circle(create_tree, count=8, radius=10)
 place_in_circle(create_lamppost, count=6, radius=5)
