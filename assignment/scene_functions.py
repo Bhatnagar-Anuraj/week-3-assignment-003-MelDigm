@@ -48,10 +48,10 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
     x, y, z = position
     results = []
     for i in range(count):
+        result = create_func(x, z)
         angle = (2 * math.pi / count) * i
         x = center_x + math.cos(angle) * radius
         z = center_z + math.sin(angle) * radius
-        result = create_func(x, z)
         results.append(result)
     return results
 
