@@ -23,7 +23,7 @@ GRADING CRITERIA:
 """
 
 import maya.cmds as cmds
-import scene_functions as sf
+#"import scene_functions as sf" made it not work and would make an error show up
 
 # ---------------------------------------------------------------------------
 # Scene Setup
