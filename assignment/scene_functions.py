@@ -23,7 +23,7 @@ GRADING CRITERIA:
 """
 
 import maya.cmds as cmds
-
+import math
 
 def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     """Create a simple building from a cube, placed on the ground plane.
@@ -44,7 +44,7 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
     cmds.move(x, height / 2.0, z, building)
     return building
-str.create_building
+pole_node, lamp_node = create_lamppost(6, -3)
 
 def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
                 position=(0, 0, 0)):
@@ -68,7 +68,7 @@ def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
     canopy_y = trunk_height + canopy_radius * 0.6
     cmds.move(x, canopy_y, z, canopy)
     return trunk, canopy
-str.create_tree
+trunk, canopy = create_tree(6, -3)
 
 
 def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
@@ -92,7 +92,7 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     cmds.move(x, height-height/2 + 0.25, z, rail)
     cmds.move(x + height, height / 2.0, z, post2)
     return post, post2, rail
-str.create_fence
+pole_node, lamp_node = create_lamppost(6, -3)
 
 
 def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
@@ -111,7 +111,7 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     lamp = cmds.polySphere(radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
-str.create_lamp_post
+pole_node, lamp_node = create_lamppost(6, -3)
 
 
 
@@ -143,4 +143,4 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
         result = create_func(x, z)
         results.append(result)
     return results
-str.place_in_circle
+pole_node, lamp_node = create_lamppost(6, -3)
