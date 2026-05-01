@@ -33,7 +33,7 @@ cmds.file(new=True, force=True)
 ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
 sf.create_building(width=5, height=10, depth=5, position=(-10, 0, 0))
-pole_node, lamp_node = create_building(10, 0)
+building = create_building(10, 0)
 
 sf.create_tree(position=(3, 0, -5))
 trunk, canopy = create_tree(3, -5)
@@ -48,7 +48,11 @@ sf.place_in_circle(sf.create_tree, count=8, radius=10)
 pole_node, lamp_node = create_fence(8, 2)
 
 sf.place_in_circle(sf.create_lamp_post, count=6, radius=5)
+pole_node, lamp_node = place_in_circle(0, 0)
+
 sf.place_in_circle(sf.create_fence, count=6, radius=5)
+pole_node, lamp_node = place_in_circle(0, 0)
+
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
