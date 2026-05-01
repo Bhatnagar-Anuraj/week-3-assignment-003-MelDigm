@@ -49,11 +49,12 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 #
 # Remember: call each function at least once, and aim for 15+ objects.
 # ---------------------------------------------------------------------------
-
-create_building(0, 0)
-place_in_circle(create_tree, count=8, radius=10)
-place_in_circle(create_lamppost, count=6, radius=5)
-place_in_circle(create_fence, count=6, radius=5)
+sf.create_building(width=5, height=10, depth=5, position=(-10, 0, 0))
+sf.create_tree(position=(3, 0, -5))
+sf.create_lamp_post(position=(8, 0, 2))
+sf.place_in_circle(create_tree, count=8, radius=10)
+sf.place_in_circle(create_lamppost, count=6, radius=5)
+sf.place_in_circle(create_fence, count=6, radius=5)
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
