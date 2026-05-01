@@ -37,7 +37,16 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
 
 def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
                 position=(0, 0, 0)):
-    """Create a simple tree at the given X, Z position."""
+    """Create a simple tree using a cylinder trunk and a sphere canopy.
+
+    Args:
+        trunk_radius (float): Radius of the cylindrical trunk.
+        trunk_height (float): Height of the trunk cylinder.
+        canopy_radius (float): Radius of the sphere used for the canopy.
+        position (tuple): (x, y, z) ground-level position for the tree base.
+
+    Returns:
+        str: The name of a group node containing the trunk and canopy."""
     trunk_radius = 0.3
     trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
     cmds.move(x, trunk_height / 2.0, z, trunk)
