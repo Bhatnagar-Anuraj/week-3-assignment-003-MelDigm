@@ -50,6 +50,7 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 # ---------------------------------------------------------------------------
 sf.create_building(width=5, height=10, depth=5, position=(-10, 0, 0))
 sf.create_tree(position=(3, 0, -5))
+sf.create_fence(length=12, post_count=7, position=(-6, 0, -3))
 sf.create_lamp_post(position=(8, 0, 2))
 sf.place_in_circle(sf.create_tree, count=8, radius=10)
 sf.place_in_circle(sf.create_lamp_post, count=6, radius=5)
