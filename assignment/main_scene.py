@@ -33,14 +33,17 @@ cmds.file(new=True, force=True)
 ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
 building = create_building(10, 0)
-
+create_building(10, 0)
 trunk, canopy = create_tree(3, -5)
+create_tree(3, -5)
 
 post, post2, rail = create_fence(-6, -3)
+create_fence(-6, -3)
 
 pole_node, lamp_node = create_lamp_post(8, 2)
-
+create_lamp_post(8, 2)
 create_func = place_in_circle
+place_in_circle(0,0)
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
