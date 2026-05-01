@@ -67,20 +67,20 @@ def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
         result = create_func(x, z)
         results.append(result)
     return results
-
-def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
-    """Create a simple building from a cube, placed on the ground plane.
-
-    The building is a single scaled cube whose base sits at ground level
-    (y = 0) at the given position.
-
-    Args:
-        width (float): Width of the building along the X axis.
-        height (float): Height of the building along the Y axis.
-        depth (float): Depth of the building along the Z axis.
-        position (tuple): (x, y, z) ground-level position. The building
-            base will rest at this point; y is typically 0.
-
+    def create_lamppost(x, z, height=3.0):
+"""Create a lamppost. Returns (pole, lamp) node names."""
+    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
+    cmds.move(x, height / 2.0, z, pole)
+    lamp = cmds.polySphere(radius=0.25)[0]
+    cmds.move(x, height + 0.25, z, lamp)
+    return pole, lamp
+# Capture the returned names
+pole_node, lamp_node = create_lamppost(6, -3)
+# Use them to assign a glowing shader
+lamp_shader = cmds.shadingNode("lambert", asShader=True)
+cmds.setAttr(lamp_shader + ".color", 1.0, 0.95, 0.6, type="double3")
+cmds.select(lamp_node)
+cmds.hyperShade(assign=lamp_shader)
 place_in_circle(create_tree, count=8, radius=7)
 
 # ---------------------------------------------------------------------------
