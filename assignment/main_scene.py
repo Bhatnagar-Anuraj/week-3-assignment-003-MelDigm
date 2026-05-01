@@ -23,7 +23,6 @@ GRADING CRITERIA:
 """
 
 import maya.cmds as cmds
-import math
 import scene_functions as sf
 # ---------------------------------------------------------------------------
 # Scene Setup
