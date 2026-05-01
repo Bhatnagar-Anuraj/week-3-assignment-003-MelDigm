@@ -40,13 +40,10 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
 
     Returns:
         str: The name of the created building transform node.
-    """
-    # TODO: Implement this function.
-    #   1. Create a polyCube with the given width, height, and depth.
-    #   2. Move it so its base sits on the ground at 'position'.
-    #      Hint: offset Y by height / 2.0.
-    #   3. Return the object name.
-    pass
+    """Create a rectangular building at (x, z)."""
+    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
+    cmds.move(x, height / 2.0, z, building)
+    return building
 
 
 def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
@@ -62,13 +59,16 @@ def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
     Returns:
         str: The name of a group node containing the trunk and canopy.
     """
-    # TODO: Implement this function.
-    #   1. Create a polyCylinder for the trunk and position it.
-    #   2. Create a polySphere for the canopy, positioned on top of the trunk.
-    #   3. Group trunk and canopy together using cmds.group().
-    #   4. Move the group to 'position'.
-    #   5. Return the group name.
-    pass
+  
+    """Create a simple tree at the given X, Z position."""
+    trunk_radius = 0.3
+    trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
+    cmds.move(x, trunk_height / 2.0, z, trunk)
+    canopy = cmds.polySphere(radius=canopy_radius)[0]
+    canopy_y = trunk_height + canopy_radius * 0.6
+    cmds.move(x, canopy_y, z, canopy)
+    return trunk, canopy
+    
 
 
 def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
