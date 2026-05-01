@@ -42,8 +42,7 @@ create_fence(-6, -3)
 
 pole_node, lamp_node = create_lamp_post(8, 2)
 create_lamp_post(8, 2)
-create_func = place_in_circle
-ree, count=8, radius=7) # ring of trees
+create_func, create_lamp_post = place_in_circle
 place_in_circle(create_lamppost, count=6, radius=5) # ring of lampposts
 
 # ---------------------------------------------------------------------------
