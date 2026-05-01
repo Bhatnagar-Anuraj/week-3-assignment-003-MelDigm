@@ -26,17 +26,8 @@ import maya.cmds as cmds
 import math
 center_x = 0
 center_z = 0
-def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
-                     **kwargs):
-    """Place objects created by 'create_func' in a circular arrangement."""
-    results = []
-    for i in range(count):
-        angle = (2 * math.pi / count) * i
-        x = center_x + math.cos(angle) * radius
-        z = center_z + math.sin(angle) * radius
-        result = create_func(x, z)
-        results.append(result)
-    return results
+x = center_x + math.cos(angle) * radius
+z = center_z + math.sin(angle) * radius
 
 def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     """Create a rectangular building at (x, z)."""
@@ -72,4 +63,16 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     lamp = cmds.polySphere(radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
+def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
+                     **kwargs):
+    """Place objects created by 'create_func' in a circular arrangement."""
+    results = []
+    for i in range(count):
+        angle = (2 * math.pi / count) * i
+        x = center_x + math.cos(angle) * radius
+        z = center_z + math.sin(angle) * radius
+        result = create_func(x, z)
+        results.append(result)
+    create_lamp_post(0,0)
+    return results
 
