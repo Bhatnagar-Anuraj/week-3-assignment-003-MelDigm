@@ -33,10 +33,20 @@ cmds.file(new=True, force=True)
 ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
 sf.create_building(width=5, height=10, depth=5, position=(-10, 0, 0))
+pole_node, lamp_node = create_building(10, 0)
+
 sf.create_tree(position=(3, 0, -5))
+pole_node, lamp_node = create_tree(3, -5)
+
 sf.create_fence(length=12, post_count=7, position=(-6, 0, -3))
+pole_node, lamp_node = create_fence(-6, -3)
+
 sf.create_lamp_post(position=(8, 0, 2))
+pole_node, lamp_node = create_fence(8, 2)
+
 sf.place_in_circle(sf.create_tree, count=8, radius=10)
+pole_node, lamp_node = create_fence(8, 2)
+
 sf.place_in_circle(sf.create_lamp_post, count=6, radius=5)
 sf.place_in_circle(sf.create_fence, count=6, radius=5)
 # ---------------------------------------------------------------------------
