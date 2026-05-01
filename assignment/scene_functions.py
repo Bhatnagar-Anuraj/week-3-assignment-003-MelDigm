@@ -44,7 +44,7 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
     cmds.move(x, height / 2.0, z, building)
     return building
-building = create_building(6, -3)
+building = create_building(-10, 8)
 
 def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
                 position=(0, 0, 0)):
