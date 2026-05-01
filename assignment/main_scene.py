@@ -46,6 +46,8 @@ create_func = place_in_circle
 place_in_circle(0,0)
 place_in_circle(0,0)
 place_in_circle(0,0)
+place_in_circle(create_tree, count=8, radius=7) # ring of trees
+place_in_circle(create_lamppost, count=6, radius=5) # ring of lampposts
 
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
