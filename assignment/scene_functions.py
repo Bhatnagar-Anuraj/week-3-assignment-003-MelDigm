@@ -44,7 +44,7 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
     cmds.move(x, height / 2.0, z, building)
     return building
-pole_node, lamp_node = create_lamppost(6, -3)
+building = create_building(6, -3)
 
 def create_tree(trunk_radius=0.3, trunk_height=3, canopy_radius=2,
                 position=(0, 0, 0)):
@@ -92,7 +92,7 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     cmds.move(x, height-height/2 + 0.25, z, rail)
     cmds.move(x + height, height / 2.0, z, post2)
     return post, post2, rail
-pole_node, lamp_node = create_lamppost(6, -3)
+post, post2, rail = create_lamppost(-6, -3)
 
 
 def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
