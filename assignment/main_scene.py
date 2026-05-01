@@ -40,7 +40,7 @@ post, post2, rail = create_fence(-6, -3)
 
 pole_node, lamp_node = create_lamp_post(8, 2)
 
-post, post2, rail, results = place_in_circle
+create_func = place_in_circle
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
