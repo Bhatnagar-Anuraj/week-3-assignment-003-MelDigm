@@ -53,7 +53,7 @@ ground = cmds.polyPlane(name="ground", width=60, height=60,
 create_building(0, 0)
 place_in_circle(create_tree, count=8, radius=10)
 place_in_circle(create_lamppost, count=6, radius=5)
-place_in_circle(create_lamppost, count=6, radius=5)
+place_in_circle(create_fence, count=6, radius=5)
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
 # ---------------------------------------------------------------------------
