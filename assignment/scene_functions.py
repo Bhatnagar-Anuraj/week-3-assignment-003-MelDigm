@@ -45,14 +45,13 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
     Returns:
         list: A list of object/group names created by create_func.
     """
-    x, y, z = position
     results = []
     for i in range(count):
-        result = create_func(x, z)
         angle = (2 * math.pi / count) * i
         x = center_x + math.cos(angle) * radius
         z = center_z + math.sin(angle) * radius
-        results.append(create_tree, count=8, radius=7)
+        result = create_func(x, z)
+        results.append(result)
     return results
 
 def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
