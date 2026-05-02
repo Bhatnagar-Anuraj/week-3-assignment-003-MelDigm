@@ -52,7 +52,7 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
         angle = (2 * math.pi / count) * i
         x = center_x + math.cos(angle) * radius
         z = center_z + math.sin(angle) * radius
-        results.append(result)
+        results.append(create_tree, count=8, radius=7)
     return results
 
 def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
