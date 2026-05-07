@@ -88,17 +88,6 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     cmds.move(x + height, height / 2.0, z, post2)
     return post, post2, rail
 
-def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
-    """Create a street lamp using a cylinder pole and a sphere light.
-
-    Args:
-        pole_height (float): Height of the lamp pole.
-        light_radius (float): Radius of the sphere representing the light.
-        position (tuple): (x, y, z) ground-level position.
-
-    Returns:
-        str: The name of a group node containing the pole and light.
-    """
     def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     """Create a street lamp using a cylinder pole and a sphere light.
 
