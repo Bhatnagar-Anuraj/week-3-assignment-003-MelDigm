@@ -99,10 +99,21 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing the pole and light.
     """
-    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
-    cmds.move(x, height / 2.0, z, pole)
-    lamp = cmds.polySphere(radius=0.25)[0]
-    cmds.move(x, height + 0.25, z, lamp)
+    def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
+    """Create a street lamp using a cylinder pole and a sphere light.
+
+    Args:
+        pole_height (float): Height of the lamp pole.
+        light_radius (float): Radius of the sphere representing the light.
+        position (tuple): (x, y, z) ground-level position.
+
+    Returns:
+        str: The name of a group node containing the pole and light.
+    """
+    pole = cmds.polyCylinder(radius=0.1, height=pole_height)[0]
+    cmds.move(position[0], position[1]+ pole_height / 2.0, position[2], pole)
+    lamp = cmds.polySphere(radius=light_radius)[0]
+    cmds.move(position[0], position[1]+ pole_height + 0.25, position[2], lamp)
     return pole, lamp
     
     def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
