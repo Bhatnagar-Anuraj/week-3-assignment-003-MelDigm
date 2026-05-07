@@ -104,7 +104,7 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
         lamp = cmds.polySphere(radius=light_radius)[0]
         cmds.move(position[0], position[1]+ pole_height + 0.25, position[2], lamp)
         return pole, lamp
-    
+        
     def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
                      **kwargs):
     """Place objects created by 'create_func' in a circular arrangement.
