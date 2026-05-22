@@ -21,7 +21,7 @@ GRADING CRITERIA:
     - [15%] Code is well-commented.
     - [10%] Script runs without errors from top to bottom.
 """
-
+# Comment example
 import maya.cmds as cmds
 import scene_functions as sf
 # ---------------------------------------------------------------------------
