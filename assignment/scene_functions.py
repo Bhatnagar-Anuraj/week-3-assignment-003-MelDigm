@@ -43,10 +43,10 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
         str: The name of the created building transform node.
     """
     building = cmds.polyCube(width=width, height=height, depth=depth)[0]
-    cmds.move(x, height / 2.0, z, building)
+    cmds.move(position[0], height / 2.0, position[2], building)
     return building
 
-def create_tree(x,z,trunk_height=2.0,canopy_radius=1.2):
+def create_tree(trunk_height=2.0,trunk_radius=.5,canopy_radius=1.2,position=(0, 0, 0)):
     """Create a simple tree using a cylinder trunk and a sphere canopy.
 
     Args:
@@ -59,10 +59,10 @@ def create_tree(x,z,trunk_height=2.0,canopy_radius=1.2):
         str: The name of a group node containing the trunk and canopy.
     """
     trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
-    cmds.move(x, trunk_height / 2.0, z, trunk)
+    cmds.move(position[0], trunk_height / 2.0, position[2], trunk)
     canopy = cmds.polySphere(radius=canopy_radius)[0]
     canopy_y = trunk_height + canopy_radius * 0.6
-    cmds.move(x, canopy_y, z, canopy)
+    cmds.move(position[0], canopy_y, position[2], canopy)
     return trunk, canopy
 
 def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
@@ -80,14 +80,21 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
         str: The name of a group node containing all fence parts.
     """
     post = cmds.polyCylinder(radius=0.1, height=height)[0]
-    cmds.move(x, height / 2.0, z, post)
+    cmds.move(position[0], height / 2.0, position[2], post)
     post2 = cmds.polyCylinder(radius=0.1, height=height)[0]
     rail = cmds.polyCube(width=height, height=.2, depth=.2)[0]
-    cmds.move(x, height-height/2 + 0.25, z, rail)
-    cmds.move(x + height, height / 2.0, z, post2)
+    cmds.move(position[0]+height/2, height-height/2 + 0.25, position[2], rail)
+    cmds.move(position[0] + height, height / 2.0, position[2], post2)
     return post, post2, rail
 
-def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
+def create_lamppost(x, z, height=3.0):
+    """Create a lamppost and return the pole and lamp node names."""
+    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
+    cmds.move(x, height / 2.0, z, pole)
+
+    lamp = cmds.polySphere(radius=0.25)[0]
+    cmds.move(x, height + 0.25, z, lamp)
+    return pole, lamp
     """Create a street lamp using a cylinder pole and a sphere light.
 
       Args:
@@ -96,7 +103,7 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
         position (tuple): (x, y, z) ground-level position.
 
     Returns:
-          str: The name of a group node containing the pole and light.
+          str: The name of a group node containing the pole and light.'''
     """
     pole = cmds.polyCylinder(radius=0.1, height=pole_height)[0]
     cmds.move(position[0], position[1]+ pole_height / 2.0, position[2], pole)
@@ -106,25 +113,11 @@ def create_lamp_post(pole_height=5, light_radius=0.5, position=(0, 0, 0)):
      
     
         
-def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
-                     **kwargs):
-    """Place objects created by 'create_func' in a circular arrangement.
+def place_in_circle(create_func, count, radius, center_x=0, center_z=0):
+    """Call create_func repeatedly, placing results in a circle.
 
-    This is a higher-order function: it takes another function as an
-    argument and calls it repeatedly to place objects around a circle.
-
-    Args:
-        create_func (callable): A function from this module (e.g.,
-            create_tree) that accepts a 'position' keyword argument
-            and returns an object name.
-        count (int): Number of objects to place around the circle.
-        radius (float): Radius of the circle.
-        center (tuple): (x, y, z) center of the circle.
-        **kwargs: Additional keyword arguments passed to create_func
-            (e.g., trunk_height=4).
-
-    Returns:
-        list: A list of object/group names created by create_func.
+    create_func must accept (x, z) as its first two arguments.
+    Returns a list of whatever create_func returns.
     """
     results = []
     for i in range(count):
@@ -134,4 +127,3 @@ def place_in_circle(create_func, count=8, radius=10, center=(0, 0, 0),
         result = create_func(x, z)
         results.append(result)
     return results
-
