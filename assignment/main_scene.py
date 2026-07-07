@@ -27,16 +27,20 @@ import scene_functions as sf
 # ---------------------------------------------------------------------------
 # Scene Setup
 # ---------------------------------------------------------------------------
+
 cmds.file(new=True, force=True)
 
-# Create a ground plane.
-ground = cmds.polyPlane(name="ground", width=60, height=60,
+
+def create_scene():
+    ground = cmds.polyPlane(name="ground", width=60, height=60,
                         subdivisionsX=1, subdivisionsY=1)[0]
-building = create_building(10, 0)
-trunk, canopy = create_tree(3, -5)
-pole, lamp = create_fence(-6, -3)
-pole, lamp = create_lamp_post(8, 2)
-place_in_circle(create_lamppost, count=6, radius=5) # ring of lampposts
+    building = sf.create_building(position=(0,0,4))
+    tree = sf.create_tree(3, -5)
+    fence = sf.create_fence(-6, -3)
+    lamp = sf.create_lamppost(0, 7)
+    circle= sf.place_in_circle(sf.create_lamppost, count=6, radius=5, center_x=0, center_z=5) # ring of lampposts
+    return ground, building, tree, fence, lamp, circle
+create_scene()
 
 # ---------------------------------------------------------------------------
 # Final viewport framing (do not remove).
