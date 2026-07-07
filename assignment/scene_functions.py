@@ -42,7 +42,7 @@ def create_building(width=4, height=8, depth=4, position=(0, 0, 0)):
     Returns:
         str: The name of the created building transform node.
     """
-    building = cmds.polyCube(width=width, height=height, depth=depth)[0]
+    building = cmds.polyCube(name="building",width=width, height=height, depth=depth)[0]
     cmds.move(position[0], height / 2.0, position[2], building)
     return building
 
@@ -58,9 +58,9 @@ def create_tree(trunk_height=2.0,trunk_radius=.5,canopy_radius=1.2,position=(0, 
     Returns:
         str: The name of a group node containing the trunk and canopy.
     """
-    trunk = cmds.polyCylinder(radius=trunk_radius, height=trunk_height)[0]
+    trunk = cmds.polyCylinder(name="trunk",radius=trunk_radius, height=trunk_height)[0]
     cmds.move(position[0], trunk_height / 2.0, position[2], trunk)
-    canopy = cmds.polySphere(radius=canopy_radius)[0]
+    canopy = cmds.polySphere(name="canopy",radius=canopy_radius)[0]
     canopy_y = trunk_height + canopy_radius * 0.6
     cmds.move(position[0], canopy_y, position[2], canopy)
     return trunk, canopy
@@ -79,20 +79,20 @@ def create_fence(length=10, height=1.5, post_count=6, position=(0, 0, 0)):
     Returns:
         str: The name of a group node containing all fence parts.
     """
-    post = cmds.polyCylinder(radius=0.1, height=height)[0]
+    post = cmds.polyCylinder(name="post",radius=0.1, height=height)[0]
     cmds.move(position[0], height / 2.0, position[2], post)
-    post2 = cmds.polyCylinder(radius=0.1, height=height)[0]
-    rail = cmds.polyCube(width=height, height=.2, depth=.2)[0]
+    post2 = cmds.polyCylinder(name="post2",radius=0.1, height=height)[0]
+    rail = cmds.polyCube(name="rail",width=height, height=.2, depth=.2)[0]
     cmds.move(position[0]+height/2, height-height/2 + 0.25, position[2], rail)
     cmds.move(position[0] + height, height / 2.0, position[2], post2)
     return post, post2, rail
 
 def create_lamppost(x, z, height=3.0):
     """Create a lamppost and return the pole and lamp node names."""
-    pole = cmds.polyCylinder(radius=0.1, height=height)[0]
+    pole = cmds.polyCylinder(name="pole",radius=0.1, height=height)[0]
     cmds.move(x, height / 2.0, z, pole)
 
-    lamp = cmds.polySphere(radius=0.25)[0]
+    lamp = cmds.polySphere(name="lamp",radius=0.25)[0]
     cmds.move(x, height + 0.25, z, lamp)
     return pole, lamp
     """Create a street lamp using a cylinder pole and a sphere light.
